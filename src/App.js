@@ -1,26 +1,45 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-function App() {
+const Square = props => {
+  const [symbol, setSymbol] = React.useState()
+  const handleClick = () => {
+  if (props.turn%2 === 0){
+      setSymbol("x")
+    } else {
+      setSymbol("o")
+    }
+  };
+  return <button className="square" onClick={handleClick}>{symbol}</button>
+};
+const SymbolDisplay = props => {
+  const [turn, setTurn] = React.useState(0)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="game noSelect">
+      <div className="game-board" onClick={() => setTurn(turn + 1)}>
+        <div className="board-row">
+          <Square turn={turn} />
+          <Square turn={turn} />
+          <Square turn={turn} />
+        </div>
+        <div className="board-row">
+          <Square turn={turn} />
+          <Square turn={turn} />
+          <Square turn={turn} />
+        </div>
+        <div className="board-row">
+          <Square turn={turn} />
+          <Square turn={turn} />
+          <Square turn={turn} />
+        </div>
+      </div>
     </div>
   );
-}
+};
 
-export default App;
+const Board = props => {
+  return <SymbolDisplay />;
+};
+
+export default Board;
+

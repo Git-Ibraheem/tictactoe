@@ -1,28 +1,26 @@
 import React from 'react';
 import declareWinner from '/Users/afamily/Ibraheem/dev/tictactoe/src/logic/declareWinner'
+import { useSelector, useDispatch } from 'react-redux'
 
 const Square = props => {
-    const [color, setColor] = React.useState("Black")
-    let symbolCopy = [...props.symbol];
-    
+ 
+    const turn = useSelector(state => state.turn);
+    const symbol = useSelector(state => state.squares[props.id]);
+    const dispatch = useDispatch();
+
     const handleClick = () => {
-      if (props.symbol[props.id] === null) {
-        props.setTurn(props.turn + 1);
-        console.log("set turn")
-        if (props.turn % 2 === 0) {
-          symbolCopy[props.id] = "x";
-          props.setSymbol(symbolCopy)
-          console.log("set symbol - x")
+      if (symbol === null) {
+        dispatch({type: "INCREMENT"})
+        if (turn % 2 === 0) {
+          dispatch({type: "SET_SYMBOL", id: props.id, newSymbol: 'x'})
         } else {
-          symbolCopy[props.id] = "o";
-          props.setSymbol(symbolCopy)
-          console.log("set symbol - o")
+          dispatch({type: "SET_SYMBOL", id: props.id, newSymbol: 'o'})
         }
       }
-      declareWinner(props.symbol);
+      //declareWinner(squares);
     };
   
-    return <button className="square" style={{ color: color }} onClick={handleClick}>{props.symbol[props.id]}</button>
+    return <button className = "square" onClick = {handleClick}> {symbol} </button>
   };
 
   export default Square

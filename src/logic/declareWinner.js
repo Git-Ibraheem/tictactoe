@@ -14,12 +14,6 @@ const declareWinner = (squares) => {
 
     utils.rows.forEach(
       x => {
-        console.log(x[0])
-        console.log(squares[x[0]])
-        console.log(x[1])
-        console.log(squares[x[1]])
-        console.log(x[2])
-        console.log(squares[x[2]])
         if (squares[x[0]] !== null && squares[x[1]] !== null && squares[x[2]] !== null) {
           if (squares[x[0]] === squares[x[1]] && squares[x[1]] === squares[x[2]]) {
             console.log("You Win!!!!!!")

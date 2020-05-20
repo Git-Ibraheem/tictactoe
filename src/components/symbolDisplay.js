@@ -1,6 +1,6 @@
 import React from 'react';
 import Square from '/Users/afamily/Ibraheem/dev/tictactoe/src/components/Square'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 
 const SymbolDisplay = props => {
     
